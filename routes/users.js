@@ -13,6 +13,7 @@ router.post('/', [
   check('password', 'Your password must be at least 5 characters').not().isEmpty().isLength({min: 5}),
   check('classYear', 'Class Year should be a number').not().isEmpty().isInt(),
   check('password', 'Your password must be at least 5 characters').not().isEmpty().isLength({min: 5}),
+  check('confirmPassword', 'Passwords do not match').custom((value, {req}) => (value === req.body.password)),
   check('email', 'Your email is not valid').not().isEmpty().isEmail().normalizeEmail(),
   check('weekday', 'Choose a weekday').optional().not().isIn(['Sunday', 'Saturday']),
 ],
